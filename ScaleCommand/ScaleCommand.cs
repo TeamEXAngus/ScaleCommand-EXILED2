@@ -6,7 +6,9 @@ namespace ScaleCommand
 {
     public class ScaleCommand : Plugin<Config>
     {
-        public static ScaleCommand Instance;
+        private static readonly ScaleCommand singleton = new ScaleCommand();
+        public static ScaleCommand Instance => singleton;
+
         public override PluginPriority Priority { get; } = PluginPriority.Medium;
 
         public override Version RequiredExiledVersion { get; } = new Version(2, 10, 0);
@@ -20,7 +22,6 @@ namespace ScaleCommand
         //Run startup code when plugin is enabled
         public override void OnEnabled()
         {
-            Instance = this;
             RegisterEvents();
         }
 
